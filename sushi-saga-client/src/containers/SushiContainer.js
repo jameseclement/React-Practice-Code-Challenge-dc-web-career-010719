@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import MoreButton from "../components/MoreButton";
 import Sushi from "../components/Sushi";
+import AddMoneyForm from "../components/AddMoneyForm";
 
 class SushiContainer extends Component {
   constructor() {
@@ -11,9 +12,13 @@ class SushiContainer extends Component {
   }
 
   handleMoreButton = () => {
-    this.setState({
-      which4: this.state.which4 + 4
-    });
+    this.state.which4 === 96
+      ? this.setState({
+          which4: 0
+        })
+      : this.setState({
+          which4: this.state.which4 + 4
+        });
   };
 
   render() {
@@ -35,6 +40,8 @@ class SushiContainer extends Component {
             );
           })}
         <MoreButton handleMoreButton={this.handleMoreButton} />
+
+        <AddMoneyForm addMoney={this.props.addMoney} />
       </div>
     );
   }

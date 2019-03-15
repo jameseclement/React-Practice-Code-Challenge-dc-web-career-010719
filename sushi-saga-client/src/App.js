@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import SushiContainer from "./containers/SushiContainer";
 import Table from "./containers/Table";
-
 // Endpoint!
 const API = "http://localhost:3000/sushis";
 
@@ -14,6 +13,14 @@ class App extends Component {
       eatenSushi: []
     };
   }
+
+  addMoney = e => {
+    e.preventDefault();
+    e.persist();
+    this.setState({
+      moneyLeft: this.state.moneyLeft + parseInt(e.target[0].value)
+    });
+  };
 
   handleSushiClick = sushiObj => {
     if (
@@ -46,7 +53,9 @@ class App extends Component {
           sushis={this.state.uneatenSushi}
           eatenSushi={this.state.eatenSushi}
           handleSushiClick={this.handleSushiClick}
+          addMoney={this.addMoney}
         />
+
         <Table
           eatenSushi={this.state.eatenSushi}
           moneyLeft={this.state.moneyLeft}
